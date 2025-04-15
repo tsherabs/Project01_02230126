@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>དབྱངས། - Home Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style1.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+
+    <div class="sidebar d-none d-lg-block">
+        <h5 class="text-center">Library</h5>
+        <a href="#" class="active"><i class="fas fa-home"></i> Home</a>
+        <a href="#"><i class="fas fa-search"></i>Discover</a>
+        <a href="playlists.html"><i class="fas fa-list"></i> Playlists</a>
+        <a href="#"><i class="fas fa-cog"></i> Settings</a>
+    </div>
+
+    <div class="main-content">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-md d-flex justify-content-between align-items-center">
+                <!-- Button to Open Offcanvas -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Brand Logo -->
+                <a class="navbar-brand d-none d-lg-block me-auto" href="#">
+                    <span style="font-weight: 800; font-size: 2rem; color: white;">དབྱངས།</span>
+                </a>
+
+                <!-- Search Bar & Buttons -->
+                <div class="d-flex ms-auto">
+                    <form class="d-flex me-3" role="search" id="searchForm">
+                        <div class="position-relative">
+                            <input class="form-control" type="search" placeholder="Search for music" aria-label="Search" id="searchInput">
+                            <i class="fas fa-search position-absolute" style="right: 15px; top: 12px; color: rgba(255, 255, 255, 0.6);"></i>
+                        </div>
+                    </form>
+                    <button class="btn btn-login me-2" onclick="window.location.href='login.html'">Login</button>
+                    <button class="btn btn-signup" onclick="window.location.href='signup.html'">Sign Up</button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Off-Canvas Sidebar -->
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarMenu">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title">Library</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="list-group-item"><a href="playlists.html"><i class="fas fa-list"></i> Playlists</a></li>
+                    <li class="list-group-item"><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Search Results Container -->
+        <div class="container-fluid px-4" id="searchResults" style="display: none;">
+            <h2 class="section-title">Search Results</h2>
+            <div class="row" id="resultsContainer">
+                <!-- Results will be displayed here -->
+            </div>
+            <button class="btn btn-secondary mt-3" id="clearSearchBtn">Clear Search</button>
+        </div>
+
+        <!--Hero Section-->
+        <div class="hero" id="mainContent">
+            <div class="hero-content">
+                <h1>Discover New Music</h1>
+                <p>Listen to the latest songs, exclusive artist collaborations, and trending playlists all in one place.</p>
+                <button class="hero-btn"><i class="fas fa-play me-2"></i> Start Listening</button>
+            </div>
+        </div>
+
+        <div class="container-fluid px-4" id="trendingSection">
+            <h2 class="section-title">Trending</h2>
+
+            <div class="row">
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="album-card">
+                        <img src="https://i1.sndcdn.com/artworks-konlZcRgJgOZJywe-xA8X2w-t500x500.jpg" alt="Album cover" class="album-img">
+                        <button class="play-button" data-title="Gachi Bay" data-artist="Etsu & Ugay" data-img="https://i1.sndcdn.com/artworks-konlZcRgJgOZJywe-xA8X2w-t500x500.jpg">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                    <div class="album-info">
+                        <div class="song-title"><a href="#">Gachi Bay</a></div>
+                        <div class="artist-name"><a href="#">Etsu & Ugay</a></div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="album-card">
+                        <img src="https://i1.sndcdn.com/artworks-ge16VCMvFiBKWQE8-FE0OtQ-t1080x1080.jpg" alt="Album cover" class="album-img">
+                        <button class="play-button" data-title="KAY TSI" data-artist="Jikme The Carriage x Maynia" data-img="https://i1.sndcdn.com/artworks-ge16VCMvFiBKWQE8-FE0OtQ-t1080x1080.jpg">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                    <div class="album-info">
+                        <div class="song-title"><a href="#">KAY TSI</a></div>
+                        <div class="artist-name"><a href="#">Jikme The Carriage x Maynia</a></div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="album-card">
+                        <img src="https://i1.sndcdn.com/artworks-VrNSjo4F5OqlQK5Z-7oTH0Q-t1080x1080.jpg" alt="Album cover" class="album-img">
+                        <button class="play-button" data-title="ETA" data-artist="GTee ft. UT" data-img="https://i1.sndcdn.com/artworks-VrNSjo4F5OqlQK5Z-7oTH0Q-t1080x1080.jpg">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                    <div class="album-info">
+                        <div class="song-title"><a href="#">ETA</a></div>
+                        <div class="artist-name"><a href="#">GTee ft. UT</a></div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="album-card">
+                        <img src="https://i1.sndcdn.com/artworks-By3bN3T2tuJ6KbiN-oHzpJQ-t1080x1080.jpg" alt="Album cover" class="album-img">
+                        <button class="play-button" data-title="Hinglayra" data-artist="Alien & T'Rap Ft. Karma Samdrup" data-img="https://i1.sndcdn.com/artworks-By3bN3T2tuJ6KbiN-oHzpJQ-t1080x1080.jpg">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                    <div class="album-info">
+                        <div class="song-title"><a href="#">Hinglayra</a></div>
+                        <div class="artist-name"><a href="#">Alien & T'Rap Ft. Karma Samdrup</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid px-4">
+                <h2 class="section-title">Popular Albums And Singles</h2>
+
+                <div class="row">
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="album-card">
+                            <img src="https://i1.sndcdn.com/artworks-B4bBurT5iPJLJRi8-XOEpSQ-t500x500.jpg" alt="Album cover" class="album-img">
+                            <button class="play-button" data-title="Nangsa" data-artist="TheLungten" data-img="https://i1.sndcdn.com/artworks-B4bBurT5iPJLJRi8-XOEpSQ-t500x500.jpg">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                        <div class="album-info">
+                            <div class="song-title"><a href="#">Nangsa</a></div>
+                            <div class="artist-name"><a href="artist.html">TheLungten</a></div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="album-card">
+                            <img src="https://i1.sndcdn.com/artworks-000237736631-xzbqee-t500x500.jpg" alt="Album cover" class="album-img">
+                            <button class="play-button" data-title="La Nye Ngam" data-artist="Misty Terrace" data-img="https://i1.sndcdn.com/artworks-000237736631-xzbqee-t500x500.jpg">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                        <div class="album-info">
+                            <div class="song-title"><a href="#">La Nye Ngam</a></div>
+                            <div class="artist-name"><a href="#">Misty Terrace</a></div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="album-card">
+                            <img src="https://i1.sndcdn.com/artworks-PiDQYFK34S6CEOfZ-7zLaGg-t500x500.png" alt="Album cover" class="album-img">
+                            <button class="play-button" data-title="ENN" data-artist="Ngawang Thinley" data-img="https://i1.sndcdn.com/artworks-PiDQYFK34S6CEOfZ-7zLaGg-t500x500.png">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                        <div class="album-info">
+                            <div class="song-title"><a href="#">ENN</a></div>
+                            <div class="artist-name"><a href="#">Ngawang Thinley</a></div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="album-card">
+                            <img src="https://i1.sndcdn.com/artworks-uWQQt3BgqiSgjSJV-kwFU0Q-t500x500.jpg" alt="Album cover" class="album-img">
+                            <button class="play-button" data-title="Ga Dhey Bay Lap Na" data-artist="Sonam Wangchen" data-img="https://i1.sndcdn.com/artworks-uWQQt3BgqiSgjSJV-kwFU0Q-t500x500.jpg">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                        <div class="album-info">
+                            <div class="song-title"><a href="#">Ga Dhey Bay Lap Na</a></div>
+                            <div class="artist-name"><a href="#">Sonam Wangchen</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="section-title">Featuring Songs</h3>
+
+                <div class="row">
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="album-card">
+                            <img src="https://i1.sndcdn.com/artworks-Lgh2f7H1QHyJGarq-lf7BFw-t1080x1080.jpg" alt="Album cover" class="album-img">
+                            <button class="play-button" data-title="Zay Nyam" data-artist="Sangay T Yonten, Jamyang Rinchen & Norlha" data-img="https://i1.sndcdn.com/artworks-Lgh2f7H1QHyJGarq-lf7BFw-t1080x1080.jpg">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                        <div class="album-info">
+                            <div class="song-title"><a href="#">Zay Nyam</a></div>
+                            <div class="artist-name"><a href="#">Sangay T Yonten, Jamyang Rinchen & Norlha</a></div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="album-card">
+                            <img src="https://i1.sndcdn.com/artworks-3IOcafh1hihiy4BE-OzvQzw-t500x500.jpg" alt="Album cover" class="album-img">
+                            <button class="play-button" data-title="Nge Gawa" data-artist="The Wander Lights" data-img="https://i1.sndcdn.com/artworks-3IOcafh1hihiy4BE-OzvQzw-t500x500.jpg">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                        <div class="album-info">
+                            <div class="song-title"><a href="#">Nge Gawa</a></div>
+                            <div class="artist-name"><a href="#">The Wander Lights</a></div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="album-card">
+                            <img src="https://i1.sndcdn.com/artworks-mawMopHzlMVCTkIV-4GgOmA-t1080x1080.jpg" alt="Album cover" class="album-img">
+                            <button class="play-button" data-title="Ngada Yoepda" data-artist="TheLungten" data-img="https://i1.sndcdn.com/artworks-mawMopHzlMVCTkIV-4GgOmA-t1080x1080.jpg">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                        <div class="album-info">
+                            <div class="song-title"><a href="#">Ngada Yoepda</a></div>
+                            <div class="artist-name"><a href="artist.html">TheLungten</a></div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="album-card">
+                            <img src="https://i1.sndcdn.com/artworks-9U8wBEfXmey4yu6I-0R01Qw-t1080x1080.jpg" alt="Album cover" class="album-img">
+                            <button class="play-button" data-title="Majo May" data-artist="Southern Ace & Kinley Eudruma Tenzin" data-img="https://i1.sndcdn.com/artworks-9U8wBEfXmey4yu6I-0R01Qw-t1080x1080.jpg">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                        <div class="album-info">
+                            <div class="song-title"><a href="#">Majo May</a></div>
+                            <div class="artist-name"><a href="#">Southern Ace & Kinley Eudruma Tenzin</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="upcoming-event-section">
+                <div class="event-section">
+                    <h4>Upcoming Events</h4>
+                    <p>Ed Sheeran concert at Changlimithang</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer Section -->
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-3 mb-4 mb-lg-0 footer-section">
+                        <h5>Company</h5>
+                        <ul>
+                            <li><a href="#">About us</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-3 mb-4 mb-lg-0 footer-section">
+                        <h5>Communities</h5>
+                        <ul>
+                            <li><a href="#">For Artist</a></li>
+                            <li><a href="#">Advertising</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-3 mb-4 mb-lg-0 footer-section">
+                        <h5>Useful Links</h5>
+                        <ul>
+                            <li><a href="#">Support</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-3 mb-4 mb-lg-0 footer-section">
+                        <h5>Plans</h5>
+                        <ul>
+                            <li><a href="#">Premium</a></li>
+                            <li><a href="#">Premium Plus</a></li>
+                            <li><a href="#">Free Plan</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <h5>Social</h5>
+                        <div class="social-icons">
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row copyright">
+                    <div class="col-md-6">
+                        <p>© 2025 Your Company. All Rights Reserved.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <p><a href="#">Privacy</a> | <a href="#">Terms&Conditions</a> | <a href="#">Cookies</a></p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Player Bar -->
+    <div class="player-bar">
+        <div class="player-left">
+            <img src="" class="now-playing-img" alt="Now playing">
+            <div class="now-playing-info">
+                <p class="now-playing-title"></p>
+                <p class="now-playing-artist"></p>
+                <div class="sound-wave">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        <div class="player-center">
+            <div class="player-controls">
+                <button class="control-button"><i class="fas fa-step-backward"></i></button>
+                <button class="control-button play-pause"><i class="fas fa-pause"></i></button>
+                <button class="control-button"><i class="fas fa-step-forward"></i></button>
+            </div>
+            <div class="progress-container">
+                <div class="current-time">0:00</div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar"></div>
+                </div>
+                <div class="total-time">3:45</div>
+            </div>
+        </div>
+        <div class="player-right">
+            <div class="volume-container">
+                <button class="volume-button"><i class="fas fa-volume-up"></i></button>
+                <div class="volume-slider">
+                    <div class="volume-level"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Search Functionality -->
+    <script>
+        // Sample music database
+        const musicDatabase = [
+            { title: "Gachi Bay", artist: "Etsu & Ugay", image: "https://i1.sndcdn.com/artworks-konlZcRgJgOZJywe-xA8X2w-t500x500.jpg" },
+            { title: "KAY TSI", artist: "Jikme The Carriage x Maynia", image: "https://i1.sndcdn.com/artworks-ge16VCMvFiBKWQE8-FE0OtQ-t1080x1080.jpg" },
+            { title: "ETA", artist: "GTee ft. UT", image: "https://i1.sndcdn.com/artworks-VrNSjo4F5OqlQK5Z-7oTH0Q-t1080x1080.jpg" },
+            { title: "Hinglayra", artist: "Alien & T'Rap Ft. Karma Samdrup", image: "https://i1.sndcdn.com/artworks-By3bN3T2tuJ6KbiN-oHzpJQ-t1080x1080.jpg" },
+            { title: "Nangsa", artist: "TheLungten", image: "https://i1.sndcdn.com/artworks-B4bBurT5iPJLJRi8-XOEpSQ-t500x500.jpg" },
+            { title: "La Nye Ngam", artist: "Misty Terrace", image: "https://i1.sndcdn.com/artworks-000237736631-xzbqee-t500x500.jpg" },
+            { title: "ENN", artist: "Ngawang Thinley", image: "https://i1.sndcdn.com/artworks-PiDQYFK34S6CEOfZ-7zLaGg-t500x500.png" },
+            { title: "Ga Dhey Bay Lap Na", artist: "Sonam Wangchen", image: "https://i1.sndcdn.com/artworks-uWQQt3BgqiSgjSJV-kwFU0Q-t500x500.jpg" },
+            { title: "Zay Nyam", artist: "Sangay T Yonten, Jamyang Rinchen & Norlha", image: "https://i1.sndcdn.com/artworks-Lgh2f7H1QHyJGarq-lf7BFw-t1080x1080.jpg" },
+            { title: "Nge Gawa", artist: "The Wander Lights", image: "https://i1.sndcdn.com/artworks-3IOcafh1hihiy4BE-OzvQzw-t500x500.jpg" },
+            { title: "Ngada Yoepda", artist: "TheLungten", image: "https://i1.sndcdn.com/artworks-mawMopHzlMVCTkIV-4GgOmA-t1080x1080.jpg" },
+            { title: "Majo May", artist: "Southern Ace & Kinley Eudruma Tenzin", image: "https://i1.sndcdn.com/artworks-9U8wBEfXmey4yu6I-0R01Qw-t1080x1080.jpg" }
+        ];
+
+        // DOM Elements
+        const searchForm = document.getElementById('searchForm');
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        const resultsContainer = document.getElementById('resultsContainer');
+        const mainContent = document.getElementById('mainContent');
+        const trendingSection = document.getElementById('trendingSection');
+        const clearSearchBtn = document.getElementById('clearSearchBtn');
+
+        // Search function
+        searchForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const query = searchInput.value.toLowerCase().trim();
+            
+            if (query === '') {
+                return;
+            }
+            
+            // Filter the database
+            const filteredResults = musicDatabase.filter(item => 
+                item.title.toLowerCase().includes(query) || 
+                item.artist.toLowerCase().includes(query)
+            );
+            
+            // Display results
+            displaySearchResults(filteredResults);
+        });
+
+        // Display search results
+        function displaySearchResults(results) {
+            // Clear previous results
+            resultsContainer.innerHTML = '';
+            
+            // Hide main content and show search results
+            mainContent.style.display = 'none';
+            trendingSection.style.display = 'none';
+            searchResults.style.display = 'block';
+            
+            // If no results found
+            if (results.length === 0) {
+                resultsContainer.innerHTML = '<div class="col-12"><p>No results found. Try different keywords.</p></div>';
+                return;
+            }
+            
+            // Create result items
+            results.forEach(item => {
+                const resultItem = `
+                    <div class="col-6 col-md-4 col-lg-3 mb-4">
+                        <div class="album-card">
+                            <img src="${item.image}" alt="${item.title}" class="album-img">
+                        </div>
+                        <div class="album-info">
+                            <div class="song-title"><a href="#">${item.title}</a></div>
+                            <div class="artist-name"><a href="#">${item.artist}</a></div>
+                        </div>
+                    </div>
+                `;
+                resultsContainer.innerHTML += resultItem;
+            });
+        }
+
+        // Clear search results and return to main view
+        clearSearchBtn.addEventListener('click', function() {
+            searchInput.value = '';
+            searchResults.style.display = 'none';
+            mainContent.style.display = 'block';
+            trendingSection.style.display = 'block';
+        });
+
+        // Player functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Player elements
+    const playerBar = document.querySelector('.player-bar');
+    const playButtons = document.querySelectorAll('.play-button');
+    const playPauseBtn = document.querySelector('.control-button.play-pause');
+    const nowPlayingImg = document.querySelector('.now-playing-img');
+    const nowPlayingTitle = document.querySelector('.now-playing-title');
+    const nowPlayingArtist = document.querySelector('.now-playing-artist');
+    const volumeBtn = document.querySelector('.volume-button');
+    const volumeSlider = document.querySelector('.volume-slider');
+    const volumeLevel = document.querySelector('.volume-level');
+    const progressBar = document.querySelector('.progress-bar');
+    const progressBarContainer = document.querySelector('.progress-bar-container');
+    const currentTimeDisplay = document.querySelector('.current-time');
+    const totalTimeDisplay = document.querySelector('.total-time');
+    
+    // Track state
+    let isPlaying = false;
+    let currentSong = null;
+    let currentVolume = 50; // 0-100
+    
+    // Initialize play buttons for each song
+    playButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const songTitle = this.getAttribute('data-title');
+            const songArtist = this.getAttribute('data-artist');
+            const songImg = this.getAttribute('data-img');
+            
+            // Update player UI
+            nowPlayingImg.src = songImg;
+            nowPlayingTitle.textContent = songTitle;
+            nowPlayingArtist.textContent = songArtist;
+            
+            // Show player bar
+            playerBar.classList.add('active');
+            
+            // Set as current song and start playing
+            currentSong = { title: songTitle, artist: songArtist, image: songImg };
+            startPlaying();
+        });
+    });
+    
+    // Play/Pause button functionality
+    playPauseBtn.addEventListener('click', function() {
+        if (!currentSong) return;
+        
+        if (isPlaying) {
+            pausePlaying();
+        } else {
+            startPlaying();
+        }
+    });
+    
+    // Volume button functionality
+    volumeBtn.addEventListener('click', function() {
+        if (currentVolume > 0) {
+            // Store the previous volume and mute
+            currentVolume = 0;
+            updateVolumeUI(0);
+            volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+        } else {
+            // Restore volume to 50%
+            currentVolume = 50;
+            updateVolumeUI(50);
+            volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+        }
+    });
+    
+    // Volume slider functionality
+    volumeSlider.addEventListener('click', function(e) {
+        const rect = volumeSlider.getBoundingClientRect();
+        const offsetX = e.clientX - rect.left;
+        const volumePercent = Math.max(0, Math.min(100, (offsetX / rect.width) * 100));
+        
+        currentVolume = volumePercent;
+        updateVolumeUI(volumePercent);
+        
+        // Update volume icon based on level
+        if (volumePercent === 0) {
+            volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+        } else if (volumePercent < 50) {
+            volumeBtn.innerHTML = '<i class="fas fa-volume-down"></i>';
+        } else {
+            volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+        }
+    });
+    
+    // Progress bar functionality
+    progressBarContainer.addEventListener('click', function(e) {
+        const rect = progressBarContainer.getBoundingClientRect();
+        const offsetX = e.clientX - rect.left;
+        const seekPercent = Math.max(0, Math.min(100, (offsetX / rect.width) * 100));
+        
+        // Update progress bar UI
+        progressBar.style.width = `${seekPercent}%`;
+        
+        // Calculate and update time displays (for demo - would normally be based on actual audio duration)
+        const totalDuration = 225; // 3:45 in seconds
+        const newTime = Math.floor((seekPercent / 100) * totalDuration);
+        currentTimeDisplay.textContent = formatTime(newTime);
+    });
+    
+    // Helper functions
+    function startPlaying() {
+        isPlaying = true;
+        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        
+        // Start progress bar animation (simplified for demo)
+        simulatePlayback();
+    }
+    
+    function pausePlaying() {
+        isPlaying = false;
+        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+        
+        // Pause progress bar animation
+        clearTimeout(playbackSimulation);
+    }
+    
+    function updateVolumeUI(volumePercent) {
+        volumeLevel.style.width = `${volumePercent}%`;
+    }
+    
+    function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = Math.floor(seconds % 60);
+        return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+    }
+    
+    // For demo purposes - simulate playback progress
+    let currentProgress = 0;
+    let playbackSimulation;
+    
+    function simulatePlayback() {
+        clearTimeout(playbackSimulation);
+        
+        const updateInterval = 1000; // Update every second
+        const totalDuration = 225; // 3:45 in seconds
+        
+        function updateProgress() {
+            currentProgress += 1;
+            if (currentProgress > totalDuration) {
+                currentProgress = 0;
+                pausePlaying();
+                progressBar.style.width = '0%';
+                currentTimeDisplay.textContent = '0:00';
+                return;
+            }
+            
+            const progressPercent = (currentProgress / totalDuration) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+            currentTimeDisplay.textContent = formatTime(currentProgress);
+            
+            if (isPlaying) {
+                playbackSimulation = setTimeout(updateProgress, updateInterval);
+            }
+        }
+        
+        updateProgress();
+    }
+    
+    // Initialize total time display
+    totalTimeDisplay.textContent = '3:45';
+});
+    </script>
+</body>
+
+</html>

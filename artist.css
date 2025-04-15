@@ -1,0 +1,446 @@
+:root {
+    --primary-color: #6b2cbf;
+    --secondary-color: #8e44ad;
+    --dark-purple: #4a1e7f;
+    --light-purple: #9b59b6;
+    --text-color: #f8f9fa;
+    --card-bg: #2c3e50;
+}
+
+body {
+    background-color: #121212;
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: linear-gradient(135deg, var(--dark-purple), #1f1f1f);
+    color: white;
+    padding-top: 70px;
+    transition: all 0.3s ease;
+    z-index: 900;
+}
+
+.sidebar h5 {
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.2);
+    margin: 0 0 15px 0;
+}
+
+.sidebar a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    display: block;
+    padding: 12px 20px;
+    margin: 5px 0;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar a i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+    background: rgba(255, 255, 255, 0.1);
+    border-left: 3px solid var(--light-purple);
+    color: white;
+}
+
+@media (max-width: 991px) {
+    .sidebar {
+        width: 0;
+        overflow: hidden;
+        transition: width 0.3s ease;
+    }
+
+    .sidebar.open {
+        width: 250px;
+    }
+
+    .main-content {
+        margin-left: 0 !important;
+    }
+
+    .main-content.shift {
+        margin-left: 250px !important;
+    }
+}
+
+.main-content {
+    margin-left: 0;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+@media (min-width: 992px) {
+    .main-content {
+        margin-left: 250px;
+    }
+}
+
+.offcanvas {
+    background-color: #1f1f1f;
+    color: white;
+}
+
+.offcanvas-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Artist Hero Section */
+.artist-hero {
+    height: 500px;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)),
+        url('https://thelungten.com/wp-content/uploads/2024/11/IMG_0368-scaled.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    display: flex;
+    position: relative;
+    margin: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.artist-info {
+    position: absolute;
+    bottom: 40px;
+    left: 100px;
+    z-index: 10;
+    max-width: 600px;
+}
+
+.artist-info h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.artist-info p {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    max-width: 80%;
+}
+
+.stats {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-item {
+    margin-right: 30px;
+}
+
+.stat-item span {
+    display: block;
+}
+
+.stat-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.artist-btn {
+    padding: 10px 25px;
+    font-size: 1.1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-right: 15px;
+}
+
+.artist-btn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.artist-btn.outline {
+    background-color: transparent;
+    border: 2px solid white;
+}
+
+.artist-btn.outline:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Social Icons - Vertical */
+.social-sidebar {
+    position: absolute;
+    right: 30px;
+    left: auto;
+    top: 38%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+}
+
+.social-sidebar a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 1.2rem;
+}
+
+.social-sidebar a:hover {
+    background: var(--primary-color);
+    transform: scale(1.1);
+}
+
+.home-link {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    z-index: 1000;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s ease;
+}
+
+.home-link:hover {
+    transform: scale(1.1);
+    color: #e0b0ff;
+}
+
+/* Content Sections */
+.content-section {
+    padding: 40px 20px;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
+    display: inline-block;
+}
+
+.album-card {
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.album-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.album-card img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+.album-info {
+    padding: 15px;
+}
+
+.album-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.album-year {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+/* Track List */
+.track-list {
+    list-style: none;
+    padding: 0;
+}
+
+.track-item {
+    padding: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.track-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.track-number {
+    width: 30px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.track-title {
+    flex-grow: 1;
+}
+
+.track-duration {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.track-item .play-icon {
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.2s ease;
+}
+
+.track-item:hover .play-icon {
+    visibility: visible;
+    opacity: 1;
+}
+
+.track-item:hover .track-number {
+    display: none;
+}
+
+.list-group-item {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px;
+}
+
+.list-group-item a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.list-group-item a i {
+    margin-right: 10px;
+}
+
+.list-group-item a:hover {
+    color: white;
+}
+
+footer {
+    background-color: #1e0f31;
+    color: #fff;
+    padding: 3rem 0;
+    margin-left: 0;
+    transition: all 0.3s ease;
+}
+
+@media (min-width: 992px) {
+    footer {
+        margin-left: 250px;
+    }
+}
+
+footer h5 {
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+footer ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+footer ul li {
+    margin-bottom: 2em;
+}
+
+footer a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: wavy;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #fff;
+}
+
+.footer-social-icons a {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 36px;
+    margin-right: 10px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.footer-social-icons a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.copyright {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1.5rem;
+    margin-top: 2rem;
+}
+
+.footer-section {
+    padding-right: 15px;
+}
+
+@media (min-width: 992px) {
+    footer {
+        margin-left: 250px;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .artist-info {
+        left: 30px;
+    }
+
+    .artist-info h1 {
+        font-size: 3rem;
+    }
+
+    .social-sidebar {
+        left: 15px;
+    }
+
+    .social-sidebar a {
+        width: 35px;
+        height: 35px;
+        margin-bottom: 10px;
+    }
+}

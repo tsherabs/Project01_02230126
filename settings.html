@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>དབྱངས། - Settings</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #6b2cbf;
+            --secondary-color: #8e44ad;
+            --dark-purple: #4a1e7f;
+            --light-purple: #9b59b6;
+            --text-color: #f8f9fa;
+            --card-bg: #2c3e50;
+            --hover-bg: #3a506b;
+            --gradient-start: #5e2ca5;
+            --gradient-end: #4a00e0;
+            --transition-speed: 0.3s;
+        }
+
+        body {
+            background-color: #121212;
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: linear-gradient(160deg, var(--dark-purple), #1a1a1a);
+            color: white;
+            padding-top: 20px;
+            transition: all var(--transition-speed) ease;
+            z-index: 900;
+            box-shadow: 3px 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar-logo {
+            padding: 18px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .sidebar h5 {
+            padding: 18px 18px 10px;
+            font-weight: bold;
+            margin: 0;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+        }
+
+        .sidebar a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            margin: 6px 10px;
+            border-radius: 8px;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .sidebar a i {
+            margin-right: 12px;
+            font-size: 1.2rem;
+            width: 25px;
+            text-align: center;
+            transition: transform var(--transition-speed);
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: linear-gradient(to right, rgba(155, 89, 182, 0.2), rgba(155, 89, 182, 0.05));
+            color: white;
+        }
+
+        .sidebar a:hover i,
+        .sidebar a.active i {
+            transform: scale(1.2);
+            color: var(--light-purple);
+        }
+
+        .sidebar a.active {
+            border-left: 4px solid var(--light-purple);
+            font-weight: 600;
+        }
+
+        /* Mobile sidebar trigger */
+        .sidebar-toggle {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+        }
+
+        .sidebar-toggle:hover {
+            background: rgba(155, 89, 182, 0.5);
+        }
+
+        /* Responsive sidebar */
+        @media (max-width: 991px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0 !important;
+            }
+
+            .sidebar-toggle {
+                display: flex;
+            }
+        }
+
+        .main-content {
+            margin-left: 280px;
+            padding: 20px;
+            transition: all var(--transition-speed) ease;
+        }
+
+        @media (max-width: 991px) {
+            .main-content {
+                margin-left: 0;
+            }
+        }
+
+        /* Settings page specific */
+        .settings-container {
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .settings-header {
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .settings-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0;
+        }
+
+        .settings-sidebar {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 0;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .settings-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .settings-nav-item {
+            padding: 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .settings-nav-item:last-child {
+            border-bottom: none;
+        }
+
+        .settings-nav-link {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            color: rgba(255, 255, 255, 0.8);
+            transition: all var(--transition-speed);
+            text-decoration: none;
+        }
+
+        .settings-nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: white;
+        }
+
+        .settings-nav-link.active {
+            background-color: rgba(155, 89, 182, 0.2);
+            color: white;
+            border-left: 4px solid var(--light-purple);
+        }
+
+        .settings-nav-link i {
+            font-size: 1.2rem;
+            margin-right: 12px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .settings-section {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .settings-section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .settings-section-title i {
+            color: var(--light-purple);
+            margin-right: 12px;
+            font-size: 1.4rem;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-control,
+        .form-select {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 12px 15px;
+            border-radius: 8px;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-color: var(--light-purple);
+            box-shadow: 0 0 0 3px rgba(155, 89, 182, 0.25);
+            color: white;
+        }
+
+        .form-check-input {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 20px;
+            height: 20px;
+        }
+
+        .form-check-input:checked {
+            background-color: var(--light-purple);
+            border-color: var(--light-purple);
+        }
+
+        .form-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .btn-save {
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all var(--transition-speed);
+        }
+
+        .btn-save:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-cancel {
+            background-color: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-right: 15px;
+            transition: all var(--transition-speed);
+        }
+
+        .btn-cancel:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .btn-danger-custom {
+            background-color: rgba(220, 53, 69, 0.2);
+            color: #ff6b6b;
+            border: 1px solid rgba(220, 53, 69, 0.4);
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all var(--transition-speed);
+        }
+
+        .btn-danger-custom:hover {
+            background-color: rgba(220, 53, 69, 0.3);
+            color: #ff8585;
+        }
+
+        .user-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--light-purple);
+            margin-bottom: 20px;
+        }
+
+        .upload-btn {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: all var(--transition-speed);
+        }
+
+        .upload-btn:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Other sections - same styles as in your original code */
+        .privacy-option {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all var(--transition-speed);
+        }
+
+        .privacy-option:hover {
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .privacy-option-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .privacy-option-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        .form-range {
+            height: 6px;
+        }
+
+        .form-range::-webkit-slider-thumb {
+            background: var(--light-purple);
+        }
+
+        .quality-label {
+            display: flex;
+            justify-content: space-between;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+
+        .plan-card {
+            background: linear-gradient(145deg, #2c3e50, #34495e);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            transition: all var(--transition-speed);
+        }
+
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-color: rgba(155, 89, 182, 0.3);
+        }
+
+        .plan-card.current {
+            border: 2px solid var(--light-purple);
+        }
+
+        .plan-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--light-purple);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .plan-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .plan-price {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .plan-price small {
+            font-size: 1rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .plan-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .plan-features li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .plan-features li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--light-purple);
+        }
+
+        .connected-account {
+            display: flex;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .connected-account-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+
+        .connected-account-icon i {
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .connected-account-info {
+            flex-grow: 1;
+        }
+
+        .connected-account-name {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .connected-account-status {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+        }
+
+        .btn-connect {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all var(--transition-speed);
+        }
+
+        .btn-connect:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-disconnect {
+            background-color: transparent;
+            color: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all var(--transition-speed);
+        }
+
+        .btn-disconnect:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Mobile Sidebar Toggle Button -->
+    <button class="sidebar-toggle" id="sidebarToggleBtn">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-logo">
+            <span style="font-weight: 800; font-size: 2rem; color: white;">དབྱངས།</span>
+        </div>
+        <h5>Library</h5>
+        <a href="index.html"><i class="fas fa-home"></i>Home</a>
+        <a href="#"><i class="fas fa-search"></i>Discover</a>
+        <a href="playlists.html"><i class="fas fa-list"></i>Playlists</a>
+        <a href="#" class="active"><i class="fas fa-cog"></i>Settings</a>
+    </div>
+
+    <div class="main-content">
+        <!-- Settings Content -->
+        <div class="settings-container">
+            <div class="settings-header">
+                <h1 class="settings-title">Settings</h1>
+            </div>
+
+            <div class="row">
+                <!-- Settings Navigation Sidebar -->
+                <div class="col-md-4 col-lg-3 mb-4">
+                    <div class="settings-sidebar">
+                        <ul class="settings-nav">
+                            <li class="settings-nav-item">
+                                <a href="#account" class="settings-nav-link active" data-bs-toggle="pill"
+                                    data-bs-target="#account">
+                                    <i class="fas fa-user-circle"></i> Account
+                                </a>
+                            </li>
+                            <li class="settings-nav-item">
+                                <a href="#profile" class="settings-nav-link" data-bs-toggle="pill"
+                                    data-bs-target="#profile">
+                                    <i class="fas fa-id-card"></i> Profile
+                                </a>
+                            </li>
+                            <li class="settings-nav-item">
+                                <a href="#privacy" class="settings-nav-link" data-bs-toggle="pill"
+                                    data-bs-target="#privacy">
+                                    <i class="fas fa-shield-alt"></i> Privacy
+                                </a>
+                            </li>
+                            <li class="settings-nav-item">
+                                <a href="#playback" class="settings-nav-link" data-bs-toggle="pill"
+                                    data-bs-target="#playback">
+                                    <i class="fas fa-headphones"></i> Playback
+                                </a>
+                            </li>
+                            <li class="settings-nav-item">
+                                <a href="#subscription" class="settings-nav-link" data-bs-toggle="pill"
+                                    data-bs-target="#subscription">
+                                    <i class="fas fa-credit-card"></i> Subscription
+                                </a>
+                            </li>
+                            <li class="settings-nav-item">
+                                <a href="#connections" class="settings-nav-link" data-bs-toggle="pill"
+                                    data-bs-target="#connections">
+                                    <i class="fas fa-link"></i> Connections
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Settings Content Area -->
+                <div class="col-md-8 col-lg-9">
+                    <div class="tab-content">
+                        <!-- Account Tab -->
+                        <div class="tab-pane fade show active" id="account">
+                            <!-- Account Details Section -->
+                            <div class="settings-section">
+                                <h3 class="settings-section-title">
+                                    <i class="fas fa-user-circle"></i> Account Details
+                                </h3>
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="email"
+                                                value="user@example.com">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="username" class="form-label">Username</label>
+                                            <input type="text" class="form-control" id="username" value="@username">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="dateOfBirth" class="form-label">Date of Birth</label>
+                                            <input type="date" class="form-control" id="dateOfBirth" value="1995-05-15">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="country" class="form-label">Country/Region</label>
+                                            <select class="form-select" id="country">
+                                                <option value="us">United States</option>
+                                                <option value="ca">Canada</option>
+                                                <option value="uk">United Kingdom</option>
+                                                <option value="au">Australia</option>
+                                                <option value="in" selected>Bhutan</option>
+                                                <option value="jp">Japan</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="language" class="form-label">Language</label>
+                                        <select class="form-select" id="language">
+                                            <option value="en" selected>English</option>
+                                            <option value="es">Español</option>
+                                            <option value="fr">Français</option>
+                                            <option value="de">Deutsch</option>
+                                            <option value="ja">日本語</option>
+                                            <option value="zh">中文</option>
+                                            <option value="hi">हिन्दी</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Password Section -->
+                            <div class="settings-section">
+                                <h3 class="settings-section-title">
+                                    <i class="fas fa-lock"></i> Password & Security
+                                </h3>
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="currentPassword" class="form-label">Current Password</label>
+                                        <input type="password" class="form-control" id="currentPassword">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="newPassword" class="form-label">New Password</label>
+                                            <input type="password" class="form-control" id="newPassword">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="confirmPassword" class="form-label">Confirm New Password</label>
+                                            <input type="password" class="form-control" id="confirmPassword">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" class="form-check-input" id="twoFactorAuth">
+                                        <label class="form-check-label" for="twoFactorAuth">Enable Two-Factor
+                                            Authentication</label>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Notifications Section -->
+                            <div class="settings-section">
+                                <h3 class="settings-section-title">
+                                    <i class="fas fa-bell"></i> Notifications
+                                </h3>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="emailNotifs" checked>
+                                    <label class="form-check-label" for="emailNotifs">Email Notifications</label>
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="pushNotifs" checked>
+                                    <label class="form-check-label" for="pushNotifs">Push Notifications</label>
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="newReleases" checked>
+                                    <label class="form-check-label" for="newReleases">New Releases from Artists You
+                                        Follow</label>
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="playlistUpdates">
+                                    <label class="form-check-label" for="playlistUpdates">Playlist Updates from
+                                        Friends</label>
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="marketingEmails">
+                                    <label class="form-check-label" for="marketingEmails">Marketing
+                                        Communications</label>
+                                </div>
+                            </div>
+
+                            <!-- Delete Account Section -->
+                            <div class="settings-section">
+                                <h3 class="settings-section-title">
+                                    <i class="fas fa-exclamation-triangle"></i> Delete Account
+                                </h3>
+                                <p class="mb-4">Permanently delete your account and all your data. This action cannot be
+                                    undone.</p>
+                                <button type="button" class="btn btn-danger-custom" data-bs-toggle="modal"
+                                    data-bs-target="#deleteAccountModal">
+                                    Delete Account
+                                </button>
+                            </div>
+
+                            <div class="mt-4 text-end">
+                                <button type="button" class="btn btn-cancel">Cancel</button>
+                                <button type="button" class="btn btn-save">Save Changes</button>
+                            </div>
+                        </div>
+
+                        <!-- Profile Tab -->
+                        <div class="tab-pane fade" id="profile">
+                            <div class="settings-section">
+                                <h3 class="settings-section-title">
+                                    <i class="fas fa-id-card"></i> Public Profile
+                                </h3>
+                                <div class="text-center mb-4">
+                                    <img src="/api/placeholder/120/120" alt="Profile Avatar" class="user-avatar">
+                                    <div>
+                                        <button type="button" class="btn upload-btn">
+                                            <i class="fas fa-camera me-2"></i> Change Photo
+                                        </button>
+                                    </div>
+                                </div>
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="displayName" class="form-label">Display Name</label>
+                                            <input type="text" class="form-control" id="displayName"
+                                                value="Tashi Dorje">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="pronouns" class="form-label">Pronouns</label>
+                                            <select class="form-select" id="pronouns">
+                                                <option value="">Prefer not to say</option>
+                                                <option value="he" selected>He/Him</option>
+                                                <option value="she">She/Her</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Privacy Tab -->
+                        <div class="tab-pane fade" id="privacy">
+                            <div class="settings-section">
+                                <h3 class="settings-section-title">
+                                    <i class="fas fa-shield-alt"></i> Privacy Settings
+                                </h3>
+                                <div class="privacy-option">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="privateAccount" checked>
+                                        <label class="form-check-label" for="privateAccount">
+                                            <div class="privacy-option-title">Private Account</div>
+                                            <div class="privacy-option-description">Only followers you approve can see
+                                                your activity and playlists</div>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="privacy-option">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="publicListening">
+                                        <label class="form-check-label" for="publicListening">
+                                            <div class="privacy-option-title">Public Listening Activity</div>
+                                            <div class="privacy-option-description">Share what you're listening to with
+                                                your followers</div>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="privacy-option">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="showInRecommendations"
+                                            checked>
+                                        <label class="form-check-label" for="showInRecommendations">
+                                            <div class="privacy-option-title">Show in Recommendations</div>
+                                            <div class="privacy-option-description">Let others discover your profile
+                                                through recommendations</div>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="privacy-option">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="allowMessages" checked>
+                                        <label class="form-check-label" for="allowMessages">
+                                            <div class="privacy-option-title">Allow Messages</div>
+                                            <div class="privacy-option-description">Allow followers to send you direct
+                                                messages</div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="settings-section">
+                                <h3 class="settings-section-title">
+                                    <i class="fas fa-database"></i> Data & Privacy
+                                </h3>
+                                <p class="mb-4">Manage how your data is used and stored.</p>
+                                <div class="mb-4">
+                                    <a href="#" class="btn btn-outline-light">Download Your Data</a>
+                                </div>
+                                <div class="mb-3">
+                                    <a href="#" class="text-decoration-none" style="color: var(--light-purple);">View
+                                        Privacy Policy</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Playback Tab -->
+                        <div class="tab-pane fade" id="playback">
+                            <div class="settings-section">
+                                <h3 class="settings-section-title">
+                                    <i class="fas fa-headphones"></i> Playback Settings
+                                </h3>
+                                <div class="mb-4">
+                                    <label for="qualityRange" class="form-label">Audio Quality</label>
+                                    <input type="range" class="form-range" min="1" max="3" step="1" value="3"
+                                        id="qualityRange">
+                                    <div class="quality-label">
+                                        <span>Normal</span>
+                                        <span>High</span>
+                                        <span>Ultra High</span>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="volumeNormalization" class="form-label">Volume Normalization</label>
+                                    <select class="form-select" id="volumeNormalization">
+                                        <option value="off">Off</option>
+                                        <option value="normal" selected>Normal</option>
+                                        <option value="quiet">Quiet</option>
+                                        <option value="loud">Loud</option>
+                                    </select>
+                                    <small class="text-muted d-block mt-2">Sets the same volume level for all
+                                        tracks</small>
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="autoplay" checked>
+                                    <label class="form-check-label" for="autoplay">Autoplay similar songs when your
+                                        music ends</label>
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="crossfade">
+                                    <label class="form-check-label" for="crossfade">Crossfade tracks</label>
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="offlineMode">
+                                    <label class="form-check-label" for="offlineMode">Offline Mode</label>
+                                </div>
+                            </div>
+
+                            <div class="settings-section">
+                                <h3 class="settings-section-title">
+                                    <i class="fas fa-download"></i> Download Settings
+                                </h3>
+                                <div class="mb-4">
+                                    <label for="downloadQuality" class="form-label">Download Quality</label>
+                                    <select class="form-select" id="downloadQuality">
+                                        <option value="normal">Normal (256 kbps)</option>
+                                        <option value="high" selected>High (320 kbps)</option>
+                                        <option value="ultra">Ultra (FLAC)</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="downloadOnWifiOnly" checked>
+                                    <label class="form-check-label" for="downloadOnWifiOnly">Download on WiFi
+                                        only</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Subscription Tab -->
+                        <div class="tab-pane fade" id="subscription">
+                            <div class="settings-section">
+                                <h3 class="settings-section-title">
+                                    <i class="fas fa-credit-card"></i> Your Current Plan
+                                </h3>
+                                <div class="plan-card current">
+                                    <div class="plan-tag">Current</div>
+                                    <h4 class="plan-title">Premium Individual</h4>
+                                    <div class="plan-price">Nu. 200 <small>/ month</small></div>
+                                    <ul class="plan-features">
+                                        <li>Ad-free music listening</li>
+                                        <li>Download to listen offline</li>
+                                        <li>High quality audio (320 kbps)</li>
+                                        <li>Cancel anytime</li>
+                                    </ul>
+                                    <button class="btn btn-plan current">Current Plan</button>
+                                </div>
+                            </div>
+
+                            <div class="settings-section">
+                                <h3 class="settings-section-title">
+                                    <i class="fas fa-arrow-up"></i> Available Upgrades
+                                </h3>
+                                <div class="row">
+                                    <div class="col-md-6 mb-4">
+                                        <div class="plan-card">
+                                            <h4 class="plan-title">Premium Family</h4>
+                                            <div class="plan-price">Nu.800 <small>/ month</small></div>
+                                            <ul class="plan-features">
+                                                <li>For up to 6 family members</li>
+                                                <li>Ad-free music listening</li>
+                                                <li>Download to listen offline</li>
+                                                <li>Block explicit music</li>
+                                            </ul>
+                                            <button class="btn btn-plan">Upgrade</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                        <div class="plan-card">
+                                            <h4 class="plan-title">Premium Ultra</h4>
+                                            <div class="plan-price">Nu.1500 <small>/ month</small></div>
+                                            <ul class="plan-features">
+                                                <li>Lossless audio quality (FLAC)</li>
+                                                <li>Spatial audio / Dolby Atmos</li>
+                                                <li>Exclusive content access</li>
+                                                <li>Priority customer support</li>
+                                            </ul>
+                                            <button class="btn btn-plan">Upgrade</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="settings-section">
+                                <h3 class="settings-section-title">
+                                    <i class="fas fa-receipt"></i> Billing Information
+                                </h3>
+                                <div class="mb-3">
+                                    <p><strong>Payment Method:</strong> Visa ending in 4242</p>
+                                    <p><strong>Billing Date:</strong> 15th of each month</p>
+                                    <p><strong>Next Billing:</strong> May 15, 2025</p>
+                                </div>
+                                <div>
+                                    <button class="btn btn-outline-light">Update Payment Method</button>
+                                    <button class="btn btn-outline-light ms-2">View Billing History</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Connections Tab -->
+                        <div class="tab-pane fade" id="connections">
+                            <div class="settings-section">
+                                <h3 class="settings-section-title">
+                                    <i class="fas fa-link"></i> Connected Accounts
+                                </h3>
+                                <p class="mb-4">Connect your account with these services to enhance your experience.</p>
+
+                                <div class="connected-account">
+                                    <div class="connected-account-icon">
+                                        <i class="fab fa-facebook"></i>
+                                    </div>
+                                    <div class="connected-account-info">
+                                        <div class="connected-account-name">Facebook</div>
+                                        <div class="connected-account-status">Connected as Jigme Tsherab</div>
+                                    </div>
+                                    <button class="btn btn-disconnect">Disconnect</button>
+                                </div>
+
+                                <div class="connected-account">
+                                    <div class="connected-account-icon">
+                                        <i class="fab fa-spotify"></i>
+                                    </div>
+                                    <div class="connected-account-info">
+                                        <div class="connected-account-name">Spotify</div>
+                                        <div class="connected-account-status">Connected</div>
+                                    </div>
+                                    <button class="btn btn-disconnect">Disconnect</button>
+                                </div>
+
+                                <div class="connected-account">
+                                    <div class="connected-account-icon">
+                                        <i class="fab fa-instagram"></i>
+                                    </div>
+                                    <div class="connected-account-info">
+                                        <div class="connected-account-name">Instagram</div>
+                                        <div class="connected-account-status">Not connected</div>
+                                    </div>
+                                    <button class="btn btn-connect">Connect</button>
+                                </div>
+
+                                <div class="connected-account">
+                                    <div class="connected-account-icon">
+                                        <i class="fab fa-twitter"></i>
+                                    </div>
+                                    <div class="connected-account-info">
+                                        <div class="connected-account-name">Twitter</div>
+                                        <div class="connected-account-status">Not connected</div>
+                                    </div>
+                                    <button class="btn btn-connect">Connect</button>
+                                </div>
+                            </div>
+
+                            <div class="settings-section">
+                                <h3 class="settings-section-title">
+                                    <i class="fas fa-share-alt"></i> Sharing Preferences
+                                </h3>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="shareActivity" checked>
+                                    <label class="form-check-label" for="shareActivity">Share my listening activity to
+                                        connected social media</label>
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="sharePlaylists">
+                                    <label class="form-check-label" for="sharePlaylists">Automatically share new
+                                        playlists I create</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Account Modal -->
+    <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title" id="deleteAccountModalLabel">Confirm Account Deletion</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete your account? This action is permanent and cannot be undone.</p>
+                    <p>All your data, including playlists, saved songs, and listening history will be permanently
+                        erased.</p>
+                    <div class="mb-3">
+                        <label for="deleteConfirm" class="form-label">Type "DELETE" to confirm</label>
+                        <input type="text" class="form-control" id="deleteConfirm">
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger-custom" disabled>Delete Account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Mobile sidebar toggle
+        document.getElementById('sidebarToggleBtn').addEventListener('click', function () {
+            document.getElementById('sidebar').classList.toggle('open');
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function (event) {
+            const sidebar = document.getElementById('sidebar');
+            const toggleBtn = document.getElementById('sidebarToggleBtn');
+
+            if (window.innerWidth < 992 &&
+                !sidebar.contains(event.target) &&
+                !toggleBtn.contains(event.target) &&
+                sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+            }
+        });
+
+        // Delete account confirmation
+        const deleteConfirmInput = document.getElementById('deleteConfirm');
+        const deleteButton = document.querySelector('#deleteAccountModal .btn-danger-custom');
+
+        if (deleteConfirmInput && deleteButton) {
+            deleteConfirmInput.addEventListener('input', function () {
+                deleteButton.disabled = this.value !== 'DELETE';
+            });
+        }
+
+        // Initialize Bootstrap tooltips
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    </script>
+</body>
+
+</html>

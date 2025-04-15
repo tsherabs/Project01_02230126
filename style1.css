@@ -1,0 +1,682 @@
+:root {
+    --primary-color: #6b2cbf;
+    --secondary-color: #8e44ad;
+    --dark-purple: #4a1e7f;
+    --light-purple: #9b59b6;
+    --text-color: #f8f9fa;
+    --card-bg: #2c3e50;
+}
+
+body {
+    background-color: #121212;
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-bottom: 90px;
+}
+
+.form-control {
+    border-radius: 20px;
+    width: 300px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    padding-left: 15px;
+}
+
+.form-control:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    box-shadow: 0 0 0 2px var(--light-purple);
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.btn {
+    border-radius: 20px;
+    padding: 8px 20px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-login {
+    background-color: transparent;
+    border: 1px solid var(--light-purple);
+    color: white;
+}
+
+.btn-login:hover {
+    background-color: rgba(142, 68, 173, 0.2);
+    color: white;
+}
+
+.btn-signup {
+    background-color: var(--primary-color);
+    border: none;
+    color: white;
+}
+
+.btn-signup:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.navbar {
+    background-color: rgba(18, 18, 18, 0.8) !important;
+    backdrop-filter: blur(10px);
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-toggler {
+    border-color: var(--light-purple);
+    color: white;
+}
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: linear-gradient(135deg, var(--dark-purple), #1f1f1f);
+    color: white;
+    padding-top: 70px;
+    transition: all 0.3s ease;
+    z-index: 900;
+}
+
+.sidebar h5 {
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.2);
+    margin: 0 0 15px 0;
+}
+
+.sidebar a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    display: block;
+    padding: 12px 20px;
+    margin: 5px 0;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar a i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+    background: rgba(255, 255, 255, 0.1);
+    border-left: 3px solid var(--light-purple);
+    color: white;
+}
+
+@media (max-width: 991px) {
+    .sidebar {
+        width: 0;
+        overflow: hidden;
+        transition: width 0.3s ease;
+    }
+
+    .sidebar.open {
+        width: 250px;
+    }
+
+    .main-content {
+        margin-left: 0 !important;
+    }
+
+    .main-content.shift {
+        margin-left: 250px !important;
+    }
+}
+
+.main-content {
+    margin-left: 0;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+@media (min-width: 992px) {
+    .main-content {
+        margin-left: 250px;
+    }
+}
+
+.hero {
+    height: 500px;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8)),
+        url('https://thelungten.com/wp-content/uploads/2024/11/Thamara-scaled.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 40px;
+    position: relative;
+    border-radius: 10px;
+    margin: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hero-content {
+    z-index: 2;
+    max-width: 600px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero p {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.hero-btn {
+    padding: 10px 25px;
+    font-size: 1.1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.hero-btn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.section-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 40px 0 25px 20px;
+    position: relative;
+    padding-left: 15px;
+}
+
+.section-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 30px;
+    width: 5px;
+    background-color: var(--light-purple);
+    border-radius: 3px;
+}
+
+.album-card {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 200px;
+}
+
+.album-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.album-img {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.album-info {
+    padding: 12px;
+}
+
+.song-title {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.artist-name {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.album-info a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s ease;
+}
+
+.album-info a:hover {
+    color: var(--light-purple);
+}
+
+.offcanvas {
+    background-color: #1f1f1f;
+    color: white;
+}
+
+.offcanvas-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.list-group-item {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px;
+}
+
+.list-group-item a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.list-group-item a i {
+    margin-right: 10px;
+}
+
+.list-group-item a:hover {
+    color: white;
+}
+
+.upcoming-event-section {
+    height: 350px;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8)),
+        url('https://www.dailybhutan.com/pub_files/01020307140871/ed-sheerans-historic-performance-in-bhutan_5592.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 40px;
+    position: relative;
+    border-radius: 10px;
+    margin: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.upcoming-event-section h4 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.upcoming-event-section p {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.event-section {
+    z-index: 2;
+    max-width: 600px;
+}
+
+footer {
+    background-color: #1e0f31;
+    color: #fff;
+    padding: 3rem 0;
+    transition: all 0.3s ease;
+}
+
+footer h5 {
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+footer ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+footer ul li {
+    margin-bottom: 0.5rem;
+}
+
+footer a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: wavy;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #fff;
+}
+
+.social-icons a {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 36px;
+    margin-right: 10px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.social-icons a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.copyright {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1.5rem;
+    margin-top: 2rem;
+}
+
+.footer-section {
+    padding-right: 15px;
+}
+
+/* Play button styles */
+.album-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--primary-color, #6b2cbf);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+
+.album-card:hover .play-button {
+    opacity: 1;
+}
+
+.play-button:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+    background-color: var(--secondary-color, #8e44ad);
+}
+
+/* Player bar styles */
+.player-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(90deg, var(--dark-purple, #4a1e7f), #1f1f1f);
+    height: 90px;
+    display: flex;
+    padding: 0 16px;
+    align-items: center;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.player-bar.active {
+    transform: translateY(0);
+}
+
+.player-left {
+    display: flex;
+    align-items: center;
+    width: 30%;
+    min-width: 180px;
+}
+
+.now-playing-img {
+    width: 56px;
+    height: 56px;
+    border-radius: 4px;
+    margin-right: 14px;
+    object-fit: cover;
+}
+
+.now-playing-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.now-playing-title {
+    font-size: 14px;
+    font-weight: 400;
+    color: white;
+    margin: 0;
+}
+
+.now-playing-artist {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+.player-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.player-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.control-button {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0 8px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.control-button.play-pause {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: white;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.control-button:hover {
+    color: white;
+}
+
+.control-button.play-pause:hover {
+    transform: scale(1.06);
+}
+
+.progress-container {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    align-items: center;
+}
+
+.current-time, .total-time {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.7);
+    width: 35px;
+    text-align: center;
+}
+
+.progress-bar-container {
+    flex: 1;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    margin: 0 8px;
+    position: relative;
+    cursor: pointer;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--light-purple, #9b59b6);
+    border-radius: 2px;
+    width: 30%;
+}
+
+.progress-bar-container:hover .progress-bar {
+    background-color: var(--primary-color, #6b2cbf);
+}
+
+.player-right {
+    width: 30%;
+    min-width: 180px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.volume-container {
+    display: flex;
+    align-items: center;
+}
+
+.volume-button {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    padding: 0;
+    margin-right: 8px;
+}
+
+.volume-slider {
+    width: 93px;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    position: relative;
+    cursor: pointer;
+}
+
+.volume-level {
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 2px;
+    width: 50%;
+}
+
+.volume-container:hover .volume-level {
+    background-color: var(--primary-color, #6b2cbf);
+}
+
+/* Animation for sound wave */
+.sound-wave {
+    display: flex;
+    align-items: center;
+    height: 15px;
+    margin-left: 10px;
+}
+
+.sound-wave span {
+    display: inline-block;
+    width: 3px;
+    height: 5px;
+    margin: 0 1px;
+    background-color: var(--primary-color, #6b2cbf);
+    border-radius: 1px;
+    animation: soundWave 0.8s infinite ease-in-out;
+}
+
+.sound-wave span:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.sound-wave span:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.sound-wave span:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+@keyframes soundWave {
+    0%, 100% {
+        height: 5px;
+    }
+    50% {
+        height: 15px;
+    }
+}
+
+/* Additional responsive fixes */
+@media (max-width: 767px) {
+    .player-center {
+        display: none;
+    }
+    
+    .player-left {
+        width: 70%;
+    }
+    
+    .player-right {
+        width: 30%;
+    }
+}
+
+@media (max-width: 576px) {
+    .player-right {
+        display: none;
+    }
+    
+    .player-left {
+        width: 100%;
+    }
+}
